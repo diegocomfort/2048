@@ -7,14 +7,8 @@ int main(void)
     srand(time(NULL));
     
     Board board = {0};
-    addPoint(board);
-    addPoint(board);
-    // {
-    //     {0, 1, 0, 0},
-    //     {0, 1, 0, 0},
-    //     {1, 1, 1, 1},
-    //     {0, 1, 0, 0}
-    // };
+    addSpace(board);
+    addSpace(board);
 
     uint64_t score = 0;
 
@@ -24,17 +18,29 @@ int main(void)
         printf("Score: %lu\n", score);
         printBoard(board);
 
-        // https://stackoverflow.com/a/11432632
         int c = getchar();
         if (c == 'q' || c == 'x')
-            return 1;
-        if (c != '\033')
+            return 0;
+
+        if (c == 'h')
+        {
+            printf("Usage:\n"
+                   "WASD to move\n"
+                   "\'x\' or \'q\' to exit");
             continue;
-        getchar();
-        if (!moveBoard(board, (Direction) getchar(), &score))
-            continue;
-        addPoint(board);
+        }
+
+        if (c == 'a' || c == 's' || c == 'd' || c == 'w')
+        {
+            if (moveBoard(board, (Direction) c, &score))
+                addSpace(board);
+        }
     }
+
+    (void) system("clear");
+    printf("Score: %lu\n", score);
+    printBoard(board);
+    printf("Game Over!");
 
     return 0;
 }

@@ -1,7 +1,7 @@
 #include "2048.h"
 #include <stdio.h>
 
-bool addPoint(Board board)
+bool addSpace(Board board)
 {
     if (gameIsOver(board))
         return false;
@@ -11,10 +11,13 @@ bool addPoint(Board board)
     {
         x = rand() % 4;
         y = rand() % 4;
-    } while (board[y][x]);
+    }
+    while (board[y][x]);
 
-    board[y][x] = 1 + rand() % 2; // 1 or 2
-
+    // 1 or 2
+    board[y][x] = 1; 
+    if (rand() % 100 < 25) ++board[y][x];
+    
     return true;
 }
 
@@ -24,22 +27,11 @@ bool gameIsOver(const Board board)
     {
         for (int x = 0; x < 4; ++x)
         {
-            // TODO: group into one big if statement
-
-            // Blank space
-            if (board[y][x] == 0)
-                return false;
-            // Possible move up
-            if (y > 0 && board[y][x] == board[y - 1][x])
-                return false;
-            // Possible move down
-            if (y < 3 && board[y][x] == board[y + 1][x])
-                return false;
-            // Possible move left
-            if (x > 0 && board[y][x] == board[y][x - 1])
-                return false;
-            // Possible move right
-            if (x < 3 && board[y][x] == board[y][x + 1])
+            if (board[y][x] == 0 ||                             // Blank space
+                (y > 0 && board[y][x] == board[y - 1][x]) ||    // Move up
+                (y < 3 && board[y][x] == board[y + 1][x]) ||    // Move down
+                (x > 0 && board[y][x] == board[y][x - 1]) ||    // Move left
+                (x < 3 && board[y][x] == board[y][x + 1]))      // Move right
                 return false;
         }
     }
@@ -71,9 +63,6 @@ bool moveDown(Board board, uint64_t *score);
 
 bool moveBoard(Board board, Direction d, uint64_t *score)
 {
-    // TODO: put everything in here
-    int yMin, yMax, xMin, xMax, direction;
-
     switch (d)
     {
     case LEFT:
@@ -87,8 +76,6 @@ bool moveBoard(Board board, Direction d, uint64_t *score)
     default:
         return false;
     }
-
-    
 }
 
 bool moveLeft(Board board, uint64_t *score)
@@ -117,7 +104,7 @@ bool moveLeft(Board board, uint64_t *score)
                 continue;
             *score += 1UL << ++board[y][newX - 1];  // Add the merged tile to the score
             board[y][newX] = 0;
-            joinedBoxes[y][newX] = (uint8_t) true;
+            joinedBoxes[y][newX - 1] = (uint8_t) true;
             moveHasBeenMade = true;
         }
     }

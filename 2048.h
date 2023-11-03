@@ -8,10 +8,10 @@
 
 typedef enum 
 {
-    LEFT = 'D',
-    RIGHT = 'C',
-    UP = 'A',
-    DOWN = 'B',
+    LEFT = 'a',
+    RIGHT = 'd',
+    UP = 'w',
+    DOWN = 's',
 }
 Direction;
 
@@ -20,7 +20,7 @@ Direction;
 // Holds the logarithmic values of the board
 typedef uint8_t Board[Y][X];
 
-bool addPoint(Board board);
+bool addSpace(Board board);
 
 bool gameIsOver(const Board board);
 
