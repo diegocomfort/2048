@@ -15,6 +15,14 @@ typedef enum
 }
 Direction;
 
+typedef enum
+{
+    PLAYING,
+    LOST,
+    WON,
+}
+GameState;
+
 #define Y 4
 #define X 4
 // Holds the logarithmic values of the board
@@ -22,7 +30,7 @@ typedef uint8_t Board[Y][X];
 
 bool addSpace(Board board);
 
-bool gameIsOver(const Board board);
+GameState stateOf(const Board board);
 
 void printBoard(Board board);
 

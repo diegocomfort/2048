@@ -17,4 +17,4 @@ run: $(DIST)/main
 clean:
 	rm -f dist/*
 
-reset: all run
+reset: clean all run

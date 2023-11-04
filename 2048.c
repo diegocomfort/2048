@@ -3,7 +3,7 @@
 
 bool addSpace(Board board)
 {
-    if (gameIsOver(board))
+    if (stateOf(board) != PLAYING)
         return false;
 
     int x, y;
@@ -21,21 +21,24 @@ bool addSpace(Board board)
     return true;
 }
 
-bool gameIsOver(const Board board)
+GameState stateOf(const Board board)
 {
+    GameState state = LOST;
     for (int y = 0; y < 4; ++y)
     {
         for (int x = 0; x < 4; ++x)
         {
-            if (board[y][x] == 0 ||                             // Blank space
+            if (board[y][x] == (uint8_t) 11)                    // Reached 2048
+                return WON;
+            if ((board[y][x] == 0) ||                           // Blank space
                 (y > 0 && board[y][x] == board[y - 1][x]) ||    // Move up
                 (y < 3 && board[y][x] == board[y + 1][x]) ||    // Move down
                 (x > 0 && board[y][x] == board[y][x - 1]) ||    // Move left
                 (x < 3 && board[y][x] == board[y][x + 1]))      // Move right
-                return false;
+                state = PLAYING;
         }
     }
-    return true;
+    return state;
 }
 
 void printBoard(Board board)

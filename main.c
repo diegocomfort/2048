@@ -1,4 +1,5 @@
 #include "2048.h"
+#include "neuralnetwork.h"
 
 #include <stdio.h>
 
@@ -12,27 +13,32 @@ int main(void)
 
     uint64_t score = 0;
 
-    while (!gameIsOver(board))
+    GameState state = PLAYING;
+
+    while ((state = stateOf(board)) == PLAYING)
     {
         (void) system("clear");
-        printf("Score: %lu\n", score);
+        printf("Score: %lu\n", sizeof(Network));
         printBoard(board);
 
-        int c = getchar();
-        if (c == 'q' || c == 'x')
+        char input = getchar();
+        if (input == 'q' || input == 'x')
             return 0;
 
-        if (c == 'h')
+        if (input == 'h')
         {
+            (void) system("clear");
             printf("Usage:\n"
                    "WASD to move\n"
-                   "\'x\' or \'q\' to exit");
+                   "\'x\' or \'q\' to exit\n"
+                   "Press <ENTER> to continue");
+            getchar(); getchar();
             continue;
         }
 
-        if (c == 'a' || c == 's' || c == 'd' || c == 'w')
+        if (input == 'a' || input == 's' || input == 'd' || input == 'w')
         {
-            if (moveBoard(board, (Direction) c, &score))
+            if (moveBoard(board, (Direction) input, &score))
                 addSpace(board);
         }
     }
@@ -40,7 +46,10 @@ int main(void)
     (void) system("clear");
     printf("Score: %lu\n", score);
     printBoard(board);
-    printf("Game Over!");
+    if (state == LOST)
+        printf("Game Over!\n");
+    else
+        printf("You Won!\n");
 
     return 0;
 }
