@@ -1,5 +1,4 @@
 #include "2048.h"
-#include "neuralnetwork.h"
 
 #include <stdio.h>
 
@@ -18,7 +17,6 @@ int main(void)
     while ((state = stateOf(board)) == PLAYING)
     {
         (void) system("clear");
-        printf("Score: %lu\n", sizeof(Network));
         printBoard(board);
 
         char input = getchar();
