@@ -1,14 +1,16 @@
-CC = gcc
-FLAGS = -Wall -Wextra
+CC = clang
+FLAGS = -Weverything -ggdb3
 DIST = dist
+SRC = src
+INCL = src/include
 
 all: $(DIST)/main
 
-$(DIST)/main: $(DIST)/main.o $(DIST)/2048.o 2048.h
+$(DIST)/main: $(DIST)/main.o $(DIST)/game.o $(INCL)/game.h
 	gcc -o $@ $^
 
 # .c to .o
-$(DIST)/%.o: %.c
+$(DIST)/%.o: $(SRC)/%.c
 	gcc -c $< -o $@
 
 run: $(DIST)/main
@@ -17,4 +19,4 @@ run: $(DIST)/main
 clean:
 	rm -f dist/*
 
-reset: clean all run
+reset: clean all
