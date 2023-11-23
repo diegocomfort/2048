@@ -1,5 +1,4 @@
-#include "2048.h"
-
+#include "include/game.h"
 #include <stdio.h>
 
 int main(void)

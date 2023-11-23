@@ -1,4 +1,4 @@
-#include "2048.h"
+#include "include/game.h"
 #include <stdio.h>
 
 bool addSpace(Board board)
