@@ -59,8 +59,6 @@ int main(void)
     uint64_t score = 0;
     GameState state = PLAYING;
 
-    // TODO: draw shit
-
     start_color();
     use_default_colors();
     init_pair(1,  COLOR_YELLOW,     COLOR_DEFAULT); // LOGO
