@@ -5,9 +5,7 @@
 
 #define HEIGHT LINES
 #define WIDTH COLS
-
-#define MIN_HEIGHT 60
-#define MIN_WIDTH  80
+#define COLOR_DEFAULT -1
 
 typedef struct Box
 {
@@ -15,11 +13,16 @@ typedef struct Box
 }
 BOX;
 
-WINDOW *createWindow(const BOX*);
+WINDOW *createWindow(int, int, int, int);
 int destroyWindow(WINDOW*);
 
-void wmovey(WINDOW*, const BOX*, int *, int, int);
-void wmovex(WINDOW*, const BOX*, int*, int, int);
-void wmoveyx(WINDOW*, const BOX*, int*, int, int*, int);
+int wmovemodin(WINDOW*, int, int);
+#define movemodin(y, x) wmovemodin(stdscr, y, x)
+
+int wmovemod(WINDOW*, int, int);
+#define movemod(y, x) wmovemod(stdscr, y, x)
+
+int wprintgrid(WINDOW*, int, int, int, int);
+#define printgrid(h, w, y, x) wprintgrid(stdscr, h, w, y, x)
 
 #endif

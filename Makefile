@@ -1,17 +1,20 @@
 CC = clang
-FLAGS = -Weverything -ggdb3
+FLAGS = -Weverything -ggdb3 
+LINK = -lncurses
 DIST = dist
 SRC = src
 INCL = src/include
 
 all: $(DIST)/main
 
-$(DIST)/main: $(DIST)/main.o $(DIST)/game.o $(INCL)/game.h
-	gcc -o $@ $^
+$(DIST)/main: $(DIST)/main.o $(DIST)/game.o $(DIST)/graphics.o $(DIST)/math.o
+	$(CC) -o $@ $^ $(FLAGS) $(LINK)
+
+$(DIST)/main.o: $(SRC)/main.c
 
 # .c to .o
 $(DIST)/%.o: $(SRC)/%.c
-	gcc -c $< -o $@
+	$(CC) -o $@ -c $< $(FLAGS)
 
 run: $(DIST)/main
 	./$(DIST)/main
