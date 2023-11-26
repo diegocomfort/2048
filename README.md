@@ -23,5 +23,6 @@ Just me trying to make [2048](https://play2048.co/) in C
     ```
 
 ## TODO
+- Show Win & Lose screen
 - Usage section & page in-game
 - Command-line args for --help, etc.?
