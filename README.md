@@ -12,7 +12,7 @@ Just me trying to make [2048](https://play2048.co/) in C
     cd 2048/
     ```
 3. Build it\
-    Note: you can use `gcc` or whatever compiler you want, but be sure to check it allows `-Weverything` or change it to `-Wall` or whatever warnings you want
+    Note: you can use `gcc` or whatever compiler you want, but be sure to check it allows `-Weverything` or change it to `-Wall` or whatever warnings you want in `Makefile`
     ```
     make
     ```
