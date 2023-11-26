@@ -88,3 +88,20 @@ int wprintgrid(WINDOW *window,
 
     return 0;
 }
+
+int wbackground(WINDOW* window, int colorPairNumber)
+{
+    int h, w, y, x;
+    getbegyx(window, y, x);
+    getmaxyx(window, h, w);
+
+    wattron(window, COLOR_PAIR(colorPairNumber));
+    for (int i = 0; i < h; ++i)
+    {
+        for (int j = 0; j < w; ++j)
+        {
+            waddch(window, ' ');
+        }
+    }
+    wattroff(window, COLOR_PAIR(colorPairNumber));
+}

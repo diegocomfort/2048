@@ -25,4 +25,7 @@ int wmovemod(WINDOW*, int, int);
 int wprintgrid(WINDOW*, int, int, int, int);
 #define printgrid(h, w, y, x) wprintgrid(stdscr, h, w, y, x)
 
+int wbackground(WINDOW*, int);
+#define background(colorPairNumber) wbackground(stdscr, colorPairNumber)
+
 #endif
