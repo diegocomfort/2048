@@ -61,28 +61,32 @@ int main(void)
 
     start_color();
     use_default_colors();
-    init_pair(1,  COLOR_YELLOW,     COLOR_DEFAULT); // LOGO
-    init_pair(2,  COLOR_DEFAULT,    COLOR_DEFAULT); // Tiles
-    init_pair(3,  COLOR_YELLOW,     COLOR_DEFAULT); //   |
-    init_pair(4,  COLOR_RED,        COLOR_DEFAULT); //   V
-    init_pair(5,  COLOR_MAGENTA,    COLOR_DEFAULT);
-    init_pair(6,  COLOR_CYAN,       COLOR_DEFAULT);
-    init_pair(7,  COLOR_BLUE,       COLOR_DEFAULT);
-    init_pair(8,  COLOR_GREEN,      COLOR_DEFAULT);
-    init_pair(9,  COLOR_DEFAULT,    COLOR_YELLOW);
-    init_pair(10, COLOR_DEFAULT,    COLOR_RED);
-    init_pair(11, COLOR_DEFAULT,    COLOR_MAGENTA);
-    attron(A_BOLD);
+    init_color(COLOR_WHITE, 1000, 1000, 1000);
+    init_color(COLOR_BLACK, 0, 0, 0);
+    init_pair(1,  COLOR_WHITE,      COLOR_BLACK);  // Default
+    init_pair(2,  COLOR_YELLOW,     COLOR_BLACK); // LOGO
+    init_pair(3,  COLOR_DEFAULT,    COLOR_BLACK); // Tiles
+    init_pair(4,  COLOR_YELLOW,     COLOR_BLACK); //   |
+    init_pair(5,  COLOR_RED,        COLOR_BLACK); //   V
+    init_pair(6,  COLOR_MAGENTA,    COLOR_BLACK);
+    init_pair(7,  COLOR_CYAN,       COLOR_BLACK);
+    init_pair(8,  COLOR_BLUE,       COLOR_BLACK);
+    init_pair(9,  COLOR_GREEN,      COLOR_BLACK);
+    init_pair(10, COLOR_DEFAULT,    COLOR_BLACK);
+    init_pair(11, COLOR_DEFAULT,    COLOR_RED);
+    init_pair(12, COLOR_DEFAULT,    COLOR_MAGENTA);
+    //attron(A_BOLD);
 
     raw();
     noecho();
     keypad(stdscr, true);
     curs_set(0);
+    background(1);
     refresh();
 
     do
     {
-        attron(COLOR_PAIR(1));
+        attron(COLOR_PAIR(2));
         move(y = (HEIGHT - (3 + LOGO_HEIGHT + BOARD_HEIGHT)) / 2, x = (WIDTH - LOGO_WIDTH) / 2);
         for (int i = 0; i < LOGO_HEIGHT; ++i)
         {
@@ -90,10 +94,13 @@ int main(void)
                 addch(logo[i][j]);
             move (++y, x);
         }
-        attroff(COLOR_PAIR(1));
+        attroff(COLOR_PAIR(2));
 
         move(++y, x = (WIDTH - BOARD_WIDTH) / 2);
+        attron(COLOR_PAIR(1));
         printgrid(BOARD_TILE_HEIGHT, BOARD_TILE_WIDTH, Y, X);
+        attroff(COLOR_PAIR(1));
+        
         move(y, x);
         for (int i = 0; i < Y; ++i)
         {
@@ -101,11 +108,11 @@ int main(void)
             {
                 if (board[i][j] == 0)
                     continue;
-                attron(COLOR_PAIR(1 + board[i][j]));
+                attron(COLOR_PAIR(2 + board[i][j]));
                 mvprintw(y + 1 + (1 + BOARD_TILE_HEIGHT) * i + BOARD_TILE_HEIGHT / 2, 
                          x + 1 + (1 + BOARD_TILE_WIDTH) * j + (BOARD_TILE_WIDTH - digits(board[i][j])) / 2,
                          "%lu", 1UL << board[i][j]);
-                attroff(COLOR_PAIR(1 + board[i][j]));
+                attroff(COLOR_PAIR(2 + board[i][j]));
                 
             }
         }
