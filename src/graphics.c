@@ -59,7 +59,7 @@ int wprintgrid(WINDOW *window,
     int initialY, initialX;
     getyx(window, initialY, initialX);
     
-    if ((x < 1) || (y < 1) || (w < 1) || (h < 1) || (initialX + totalX >= WIDTH) || (initialX + totalY >= HEIGHT))
+    if ((x < 1) || (y < 1) || (w < 1) || (h < 1) )// || (initialX + totalX >= WIDTH) || (initialX + totalY >= HEIGHT))
         return -1;
 
     for (int i = 0; i < totalY; ++i) 

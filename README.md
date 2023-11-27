@@ -23,7 +23,6 @@ Just me trying to make [2048](https://play2048.co/) in C
     ```
 
 ## TODO
-- (BUG) line and corner characters straight up would not print on one terminal (wsl2)
 - Show Win & Lose screen
 - Usage section & page in-game
 - Command-line args for --help, etc.?
