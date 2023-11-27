@@ -6,6 +6,7 @@
 #define HEIGHT LINES
 #define WIDTH COLS
 #define COLOR_DEFAULT -1
+#define COLOR_CONST (1000 / 255)
 
 typedef struct Box
 {

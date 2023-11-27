@@ -23,7 +23,6 @@ Just me trying to make [2048](https://play2048.co/) in C
     ```
 
 ## TODO
-- Force colors to be the correct ones, not user/terminal defined
+- (BUG) White line appearing across the screen on Chrome (Debian) terminal
 - Show Win & Lose screen
-- Usage section & page in-game
-- Command-line args for --help, etc.?
+- Usage section & page in-game or command-line args for --help, etc.?

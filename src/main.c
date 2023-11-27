@@ -60,10 +60,15 @@ int main(void)
     GameState state = PLAYING;
 
     start_color();
-    use_default_colors();
-    // init_color(COLOR_WHITE, 1000, 1000, 1000);
-    // init_color(COLOR_BLACK, 0, 0, 0);
-    init_pair(1,  COLOR_WHITE,      COLOR_BLACK);  // Default
+    init_color(COLOR_WHITE,     1000,               1000,               1000);
+    init_color(COLOR_BLACK,     0,                  0,                  0);
+    init_color(COLOR_YELLOW,    255 * COLOR_CONST,  215 * COLOR_CONST,  0);
+    init_color(COLOR_RED,       255 * COLOR_CONST,  135 * COLOR_CONST,  0);
+    init_color(COLOR_MAGENTA,   0xD1 * COLOR_CONST, 0,                  0xD1 * COLOR_CONST);
+    init_color(COLOR_CYAN,      72 * COLOR_CONST,   209 * COLOR_CONST,  204 * COLOR_CONST);
+    init_color(COLOR_BLUE,      0,                  0,                  255 * COLOR_CONST);
+    init_color(COLOR_GREEN,     0,                  128 * COLOR_CONST,  0);
+    init_pair(1,  COLOR_WHITE,      COLOR_BLACK); // GRID
     init_pair(2,  COLOR_YELLOW,     COLOR_BLACK); // LOGO
     init_pair(3,  COLOR_WHITE,      COLOR_BLACK); // Tiles
     init_pair(4,  COLOR_YELLOW,     COLOR_BLACK); //   |
@@ -72,9 +77,10 @@ int main(void)
     init_pair(7,  COLOR_CYAN,       COLOR_BLACK);
     init_pair(8,  COLOR_BLUE,       COLOR_BLACK);
     init_pair(9,  COLOR_GREEN,      COLOR_BLACK);
-    init_pair(10, COLOR_DEFAULT,    COLOR_YELLOW);
-    init_pair(11, COLOR_DEFAULT,    COLOR_RED);
-    init_pair(12, COLOR_DEFAULT,    COLOR_MAGENTA);
+    init_pair(10, COLOR_WHITE,      COLOR_YELLOW);
+    init_pair(11, COLOR_WHITE,      COLOR_RED);
+    init_pair(12, COLOR_WHITE,      COLOR_MAGENTA);
+    init_pair(13, COLOR_WHITE,      COLOR_CYAN);
     //attron(A_BOLD);
 
     raw();
